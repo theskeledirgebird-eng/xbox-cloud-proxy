@@ -11,8 +11,9 @@ app.use((req, res, next) => {
 });
 
 app.use('/', createProxyMiddleware({
-    target: 'https://www.xbox.com',
+    target: 'https://xbox.com',
     changeOrigin: true,
+    autoRewrite: true, // Fixes the blank white screen by rewriting internal redirect links
     onProxyRes: function (proxyRes, req, res) {
         delete proxyRes.headers['x-frame-options'];
         delete proxyRes.headers['content-security-policy'];
